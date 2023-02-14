@@ -4,36 +4,67 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public CharacterController controller;
-	public float runSpeed = 40f;
-	float horizontalMove = 0f;
-	bool jump = false;
-	bool crouch = false;
-	
-	// Update is called once per frame
-	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+    #region SINGLETON PATTERN
+    private static PlayerController _instance;
 
-		if (Input.GetButtonDown("Jump"))
-		{
-			jump = true;
-		}
+    public static PlayerController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<PlayerController>();
+            }
 
-		if (Input.GetButtonDown("Crouch"))
-		{
-			crouch = true;
-		} else if (Input.GetButtonUp("Crouch"))
-		{
-			crouch = false;
-		}
+            return _instance;
+        }
+    }
+    #endregion
+    public CharacterController controller;
+    public float runSpeed = 40f;
+    float horizontalMove = 0f;
+    bool jump = false;
+    bool crouch = false;
+    public bool isFrozen;
+    
+    // Update is called once per frame
+    void Update () {
 
-	}
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-	void FixedUpdate ()
-	{
-		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-		jump = false;
-	}
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump = true;
+        }
+
+        if (Input.GetButtonDown("Crouch"))
+        {
+            crouch = true;
+        } else if (Input.GetButtonUp("Crouch"))
+        {
+            crouch = false;
+        }
+
+    }
+
+    void FixedUpdate ()
+    {
+        // Move our character
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
+    }
+
+    //Freezing the player in place
+    public void SetFrozen()
+    {
+        isFrozen = true;
+        Debug.Log("Frozen");
+    }
+    //Unfreezing the player; back in motion again
+    public void UnFrozen()
+    {
+        isFrozen = false;
+        Debug.Log("Not frozen");
+    }
 }
