@@ -76,4 +76,9 @@ public class PlayerController : MonoBehaviour {
     public void onLanding()  {
         animator.SetBool("IsJumping", jump);
     }
+
+    public void OnCrouching (bool isCrouching)
+	{
+		animator.SetBool("IsCrouching", isCrouching);
+	}
 }
