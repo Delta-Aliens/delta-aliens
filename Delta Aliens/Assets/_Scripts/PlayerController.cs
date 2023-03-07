@@ -22,10 +22,10 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
     public CharacterController controller;
-
     public Animator animator;
     public float runSpeed = 40f;
     float horizontalMove = 0f;
+
     bool jump = false;
     bool crouch = false;
      public bool isFrozen;
@@ -46,11 +46,19 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
+
         } else if (Input.GetButtonUp("Crouch"))
         {
             crouch = false;
+            // reset radius
+            GetComponent<CircleCollider2D>().radius = 3.402136f;
         }
 
+        if (crouch && Mathf.Abs(horizontalMove) > 0)
+        {
+            // Player is crouching and moving
+            GetComponent<CircleCollider2D>().radius = Time.time * .01f;
+        }   
     }
 
     void FixedUpdate ()
@@ -58,6 +66,13 @@ public class PlayerController : MonoBehaviour {
         // Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
+
+        // detect a player falling
+        if (!controller.IsGrounded() && !animator.GetBool("IsFalling"))
+        {
+            // Player is falling
+            animator.SetBool("IsFalling", true);
+        }
     }
 
     //Freezing the player in place
@@ -75,5 +90,10 @@ public class PlayerController : MonoBehaviour {
 
     public void onLanding()  {
         animator.SetBool("IsJumping", jump);
+    }
+
+    public void OnCrouching (bool isCrouching)
+    {
+        animator.SetBool("IsCrouching", isCrouching);
     }
 }
