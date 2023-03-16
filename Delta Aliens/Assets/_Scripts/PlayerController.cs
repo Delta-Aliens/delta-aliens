@@ -56,6 +56,22 @@ public class PlayerController : MonoBehaviour {
             crouch = false;
             // reset radius
             GetComponent<CircleCollider2D>().radius = 3.402136f;
+
+        } else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            // Player is sprinting
+            runSpeed = 80f;
+
+            // set the animator to sprinting
+            animator.SetFloat("Speed", runSpeed);
+
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            // Player is no longer sprinting
+            runSpeed = 40f;
+
+            // set the animator to walking
+            animator.SetFloat("Speed", runSpeed);
         }
 
         // If the player is crouching and moving, shrink the collider
