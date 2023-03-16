@@ -133,7 +133,7 @@ public class CharacterController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("PlayerJump");
             // Add a vertical force to the player.
-            m_Grounded = false;
+            m_Grounded = true;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
@@ -148,5 +148,10 @@ public class CharacterController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public bool IsGrounded()
+    {
+        return m_Grounded;
     }
 }
