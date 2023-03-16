@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     public CharacterController controller;
     public Animator animator;
     public float runSpeed = 40f;
-    float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
     float fallTimer = 0f;
