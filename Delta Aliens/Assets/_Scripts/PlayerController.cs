@@ -52,12 +52,31 @@ public class PlayerController : MonoBehaviour {
 
         } else if (Input.GetButtonUp("Crouch"))
         {
-            // Player is no longer crouching
-            crouch = false;
-            // reset radius
-            GetComponent<CircleCollider2D>().radius = 3.402136f;
+            // CHECK IF RAYCAST ABOVE PLAYER IS HITTING SOMETHING
+            // IF NOT, STOP CROUCHING
 
-        } else if (Input.GetKey(KeyCode.LeftShift))
+            // Check if anything is blocking the path of the player's collider
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.up, 1f);
+
+            bool isBlocked = false;
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                // A non-trigger collider is blocking the path of the player's collider
+                isBlocked = true;
+                break;
+            }
+
+            if (!isBlocked)
+            {
+                // Player is no longer crouching
+                crouch = false;
+                // reset radius
+                GetComponent<CircleCollider2D>().radius = 3.16146f;
+            }
+
+        // IF player is already walking and presses shift, start sprinting
+        } else if (Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(horizontalMove) > 0)
         {
             // Player is sprinting
             runSpeed = 80f;
@@ -88,14 +107,14 @@ public class PlayerController : MonoBehaviour {
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
 
-        // detect a player falling
-        if (!controller.IsGrounded())
+        // detect a player falling and not stuck in the air
+        if (!controller.IsGrounded() && !animator.GetBool("IsJumping"))
         {
             // Increment the fall timer
             fallTimer += Time.fixedDeltaTime;
 
-            // If the fall timer reaches 2 seconds, play the fall animation
-            if (fallTimer >= 2f)
+            // If the fall timer reaches 5 seconds, play the fall animation
+            if (fallTimer >= 5f)
             {
                 animator.SetBool("IsFalling", true);
                 animator.SetBool("IsJumping", false);
