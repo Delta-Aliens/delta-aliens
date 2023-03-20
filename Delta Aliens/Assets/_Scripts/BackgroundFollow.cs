@@ -5,7 +5,7 @@ public class BackgroundFollow : MonoBehaviour
     public Transform target;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
-        public bool X, Y, Z;
+    public bool X, Y, Z;
 
     public float XOffset, YOffset, ZOffset;
 
@@ -13,13 +13,6 @@ public class BackgroundFollow : MonoBehaviour
     {
         transform.position = new Vector3(0,YOffset,0);
     }
-
-    // void LateUpdate()
-    // {
-    //     transform.position = target.position + offset;
-        
-    // }
-
 
     void Update() 
     { 
