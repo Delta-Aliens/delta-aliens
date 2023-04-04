@@ -47,33 +47,15 @@ public class PlayerController : MonoBehaviour {
         {
             // Player is crouching
             crouch = true;
-            // Shrink the collider
-            GetComponent<CircleCollider2D>().radius = Time.time * .01f;
+            // // Shrink the collider
+            GetComponent<BoxCollider2D>().size = new Vector2(5.123321f, 10.98985f);
 
         } else if (Input.GetButtonUp("Crouch"))
         {
-            // CHECK IF RAYCAST ABOVE PLAYER IS HITTING SOMETHING
-            // IF NOT, STOP CROUCHING
-
             // Check if anything is blocking the path of the player's collider
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.up, 1f);
+            crouch = false;
 
-            bool isBlocked = false;
-
-            foreach (RaycastHit2D hit in hits)
-            {
-                // A non-trigger collider is blocking the path of the player's collider
-                isBlocked = true;
-                break;
-            }
-
-            if (!isBlocked)
-            {
-                // Player is no longer crouching
-                crouch = false;
-                // reset radius
-                GetComponent<CircleCollider2D>().radius = 3.16146f;
-            }
+            GetComponent<BoxCollider2D>().size = new Vector2(5.123321f, 14.61552f);
 
         // IF player is already walking and presses shift, start sprinting
         } else if (Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(horizontalMove) > 0)
@@ -94,11 +76,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         // If the player is crouching and moving, shrink the collider
-        if (crouch && Mathf.Abs(horizontalMove) > 0)
-        {
-            // Player is crouching and moving
-            GetComponent<CircleCollider2D>().radius = Time.time * .01f;
-        }   
+        // if (crouch && Mathf.Abs(horizontalMove) > 0)
+        // {
+        //     // Player is crouching and moving
+        //     GetComponent<CircleCollider2D>().radius = Time.time * .01f;
+        // }   
     }
 
     void FixedUpdate ()
