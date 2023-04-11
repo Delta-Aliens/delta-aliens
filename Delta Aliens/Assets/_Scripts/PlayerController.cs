@@ -71,8 +71,8 @@ public class PlayerController : MonoBehaviour {
             {
                 // Player is no longer crouching
                 crouch = false;
-                // reset radius
-                GetComponent<CircleCollider2D>().radius = 3.16146f;
+                // reset box collider
+                GetComponent<BoxCollider2D>().size = new Vector2(1f, 2f);
             }
 
         // IF player is already walking and presses shift, start sprinting
