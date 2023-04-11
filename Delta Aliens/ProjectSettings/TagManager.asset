@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacles
+  - Bottle
   - Ladder
   layers:
   - Default
