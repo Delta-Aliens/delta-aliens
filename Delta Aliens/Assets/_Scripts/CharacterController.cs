@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] public float m_JumpForce = 800f;							// Amount of force added when the player jumps.
-    [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .66f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
     [SerializeField] public LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
@@ -65,15 +65,6 @@ public class CharacterController : MonoBehaviour
     public void Move(float move, bool crouch, bool jump)
     {
         Vector2 targetVelocity = Vector2.zero;
-        // If crouching, check to see if the character can stand up
-        // if (!crouch)
-        // {
-        //     // If the character has a ceiling preventing them from standing up, keep them crouching
-        //     if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-        //     {
-        //         crouch = true;
-        //     }
-        // }
 
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
@@ -90,16 +81,9 @@ public class CharacterController : MonoBehaviour
 
                 // Reduce the speed by the crouchSpeed multiplier
                 move *= m_CrouchSpeed;
-
-                // Disable one of the colliders when crouching
-                // if (m_CrouchDisableCollider != null)
-                //     m_CrouchDisableCollider.enabled = false;
+    
             } else
             {
-                // Enable the collider when not crouching
-                if (m_CrouchDisableCollider != null)
-                    m_CrouchDisableCollider.enabled = true;
-
                 if (m_wasCrouching)
                 {
                     m_wasCrouching = false;
