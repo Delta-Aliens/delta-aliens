@@ -36,31 +36,22 @@ public class EventSystemsManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public event Action onPaused;
-    public event Action onResumed;
+    public event Action onEndGame;
     public event Action onRestartGame;
+
+    public void EndGame()
+    {
+        if(onEndGame != null)
+        {
+            onEndGame();
+        }
+    }
 
     public void RestartGame()
     {
         if(onRestartGame != null)
         {
             onRestartGame();
-        }
-    }
-  
-    public void ResumedGame()
-    {
-        if(onResumed != null)
-        {
-            onResumed();
-        }
-    }
-
-    public void PausedGame()
-    {
-        if(onPaused != null)
-        {
-            onPaused();
         }
     }
 }
