@@ -40,41 +40,10 @@ public class GameplaySystem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        //Pause
-        EventSystemsManager.Instance.onPaused += onPauseGame;
-        EventSystemsManager.Instance.onResumed += onResumedGameManager;
     }
     public void GameStartNew()
     {
 
     }
-
-    // TODO: Connect with the UI GamePause Object
-    public void onResumedGameManager()
-    {
-        if(!state_frozen)
-        {
-            Player.UnFrozen();
-            gamePaused = false;
-        }
-        Time.timeScale = 1f;
-    }
-
-    void onPauseGame()
-    {
-        if(!gamePaused)
-        {
-            state_frozen = Player.isFrozen;
-            gamePaused = true;
-
-            Player.SetFrozen();
-            Time.timeScale = 0f;
-        }
-        
-        
-    }
-
-    
 
 }
