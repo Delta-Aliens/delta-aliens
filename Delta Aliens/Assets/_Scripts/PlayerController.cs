@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         {
             // Player is crouching
             crouch = true;
-            // // Shrink the collider
+            // Shrink the collider
             GetComponent<BoxCollider2D>().size = new Vector2(5.123321f, 10.98985f);
 
         } else if (Input.GetButtonUp("Crouch"))
@@ -74,13 +74,6 @@ public class PlayerController : MonoBehaviour {
             // set the animator to walking
             animator.SetFloat("Speed", runSpeed);
         }
-
-        // If the player is crouching and moving, shrink the collider
-        // if (crouch && Mathf.Abs(horizontalMove) > 0)
-        // {
-        //     // Player is crouching and moving
-        //     GetComponent<CircleCollider2D>().radius = Time.time * .01f;
-        // }   
     }
 
     void FixedUpdate ()
@@ -96,7 +89,7 @@ public class PlayerController : MonoBehaviour {
             fallTimer += Time.fixedDeltaTime;
 
             // If the fall timer reaches 5 seconds, play the fall animation
-            if (fallTimer >= 5f)
+            if (fallTimer >= 15f)
             {
                 animator.SetBool("IsFalling", true);
                 animator.SetBool("IsJumping", false);

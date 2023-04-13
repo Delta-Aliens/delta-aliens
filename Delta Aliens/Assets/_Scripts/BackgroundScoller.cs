@@ -26,7 +26,8 @@ public class BackgroundScoller : MonoBehaviour
         
         // Check if the player is grounded and not blocked by an obstacle
         Vector3 rayDirection = Player.horizontalMove > 0 ? Player.transform.right : Player.transform.right * -1;
-        if (!Physics2D.Raycast(Player.transform.position, rayDirection, 1f, raycastMask))
+        float rayLength = Mathf.Max(Player.GetComponent<BoxCollider2D>().bounds.size.y, 1f); // use player's height or 1 if it's smaller
+        if (!Physics2D.Raycast(Player.transform.position, rayDirection, rayLength, raycastMask))
         {
             scrollSpeed = Player.horizontalMove * 0.045f;
         }
