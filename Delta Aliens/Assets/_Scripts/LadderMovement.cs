@@ -15,12 +15,11 @@ public class LadderMovement : MonoBehaviour
 
     void Update()
     {
-        vertical = Input.GetAxisRaw("Vertical");
+        vertical = Input.GetKeyDown(KeyCode.W) ? 1f : Input.GetKeyDown(KeyCode.S) ? -1f : 0f;
 
         if (isLadder)
         {
             isClimbing = true;
-            Debug.Log(isClimbing);
             animator.SetBool("isClimbing", true);
         }
     }
@@ -31,7 +30,7 @@ public class LadderMovement : MonoBehaviour
         {
             // rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
-            controller.m_JumpForce = 50f;
+            controller.m_JumpForce = 80f;
         }
         else
         {
