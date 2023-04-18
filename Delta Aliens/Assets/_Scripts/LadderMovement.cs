@@ -53,7 +53,7 @@ public class LadderMovement : MonoBehaviour
         {
             isLadder = false;
             isClimbing = false;
-            // animator.SetBool("isClimbing", false);
+            animator.SetBool("isClimbing", false);
         }
     }
 }
