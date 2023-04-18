@@ -41,7 +41,7 @@ public class EventSystemsManager : MonoBehaviour
 
     public void EndGame()
     {
-        if(onEndGame != null)
+        if (onEndGame != null)
         {
             onEndGame();
         }
@@ -49,7 +49,7 @@ public class EventSystemsManager : MonoBehaviour
 
     public void RestartGame()
     {
-        if(onRestartGame != null)
+        if (onRestartGame != null)
         {
             onRestartGame();
         }
