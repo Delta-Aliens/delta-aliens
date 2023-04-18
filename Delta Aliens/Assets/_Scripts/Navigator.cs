@@ -26,37 +26,46 @@ public class Navigator : MonoBehaviour
 
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        OnEnable();
+
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
-
-        EventSystemsManager.Instance.onEndGame += EndGame;
-        EventSystemsManager.Instance.onRestartGame += RestartGame;
-        EventSystemsManager.Instance.onQuitGame += QuitGame;
     }
 
-    private void OnEnable() {
-        EventSystemsManager.Instance.onEndGame += EndGame;
-        EventSystemsManager.Instance.onRestartGame += RestartGame;
+    void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    void OnDisable() {
+        EventSystemsManager.Instance.onEndGame -= OnEndGame;
+        EventSystemsManager.Instance.onRestartGame -= OnRestartGame;
+        EventSystemsManager.Instance.onQuitGame -= QuitGame;
+    }
+
+    void OnEnable() {
+        EventSystemsManager.Instance.onEndGame += OnEndGame;
+        EventSystemsManager.Instance.onRestartGame += OnRestartGame;
         EventSystemsManager.Instance.onQuitGame += QuitGame;
     }
 
     public void SwitchScene(string sceneName) {
         SceneManager.LoadScene(sceneName);
+        Debug.Log("Switching to scene: " + sceneName);
     }
 
-
-    public void EndGame()
+    public void OnEndGame()
     {
         Debug.Log("End Game");
-        SceneManager.LoadScene("Credits");
+        SwitchScene("Credits");
     }
 
-    public void RestartGame()
+    public void OnRestartGame()
     {
         Debug.Log("Restart Game");
-        SceneManager.LoadScene("Main_Menu");
+        SwitchScene("Main_Menu");
     }
 
     public void QuitGame()

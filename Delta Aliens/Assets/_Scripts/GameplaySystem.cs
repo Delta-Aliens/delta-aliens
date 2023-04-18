@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-// using UnityEngine.SceneManagement;
 
 public class GameplaySystem : MonoBehaviour
 {
     public PlayerController Player;
-    private bool gamePaused;
-    bool state_frozen = false;
+
+    public ItemCollector IC;
 
     //making sure there is only 1 instance in the scene
     #region SINGLETON PATTERN
@@ -31,7 +30,6 @@ public class GameplaySystem : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        gamePaused = false;
     }
 
     void Awake()
@@ -41,9 +39,10 @@ public class GameplaySystem : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public void GameStartNew()
-    {
 
+    void LateUpdate() {
+        if (IC.bottles == 1) {
+            EventSystemsManager.Instance.EndGame();
+        }
     }
-
 }

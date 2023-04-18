@@ -10,9 +10,11 @@ public class ItemCollector : MonoBehaviour
 
     [SerializeField] private TMP_Text bottlesText;
 
+    // Checks if the player has collided with a bottle
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bottle")) {
+
             bottles++;
             bottlesText.text = bottles + "/20";
             Destroy(collision.gameObject);
