@@ -41,7 +41,7 @@ public class GameplaySystem : MonoBehaviour
     }
 
     void LateUpdate() {
-        if (IC.bottles == 1) {
+        if (IC.bottles == 10) {
             EventSystemsManager.Instance.EndGame();
         }
     }

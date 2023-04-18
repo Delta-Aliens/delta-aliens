@@ -16,7 +16,7 @@ public class ItemCollector : MonoBehaviour
         if (collision.gameObject.CompareTag("Bottle")) {
 
             bottles++;
-            bottlesText.text = bottles + "/20";
+            bottlesText.text = bottles + "/10";
             Destroy(collision.gameObject);
         }
     }

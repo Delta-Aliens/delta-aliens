@@ -40,6 +40,8 @@ public class EventSystemsManager : MonoBehaviour
     public event Action onRestartGame;
     public event Action onQuitGame;
 
+    public event Action<int> onUpdateCoin;
+
     public void EndGame()
     {
         if (onEndGame != null)
@@ -61,6 +63,14 @@ public class EventSystemsManager : MonoBehaviour
         if (onQuitGame != null)
         {
             onQuitGame();
+        }
+    }
+
+    public void UpdateCoin(int coin)
+    {
+        if (onUpdateCoin != null)
+        {
+            onUpdateCoin(coin);
         }
     }
 }
