@@ -38,6 +38,7 @@ public class EventSystemsManager : MonoBehaviour
 
     public event Action onEndGame;
     public event Action onRestartGame;
+    public event Action onQuitGame;
 
     public void EndGame()
     {
@@ -52,6 +53,14 @@ public class EventSystemsManager : MonoBehaviour
         if (onRestartGame != null)
         {
             onRestartGame();
+        }
+    }
+
+    public void QuitGame()
+    {
+        if (onQuitGame != null)
+        {
+            onQuitGame();
         }
     }
 }
