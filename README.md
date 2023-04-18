@@ -2,7 +2,7 @@
 > Saving Corgon is a game developed by Development Team Delta from Servant Engineering, aimed at teaching elementary school students about sustainability, conservation, and circular economy. The game follows an alien character who crash lands on Earth and must overcome sustainability challenges in a 3D side-scrolling world. The game also includes real-life field trips and at-home projects related to STEAM to enhance the learning experience.
 
 ## Development Period
-January 9 to May 1
+> January 9 to May 1
 
 ## Design Goals
 > The main design goal for the computer science side of the project is to create at least 2 working levels, including game metrics and mechanics, music, art, visuals, and communication with the world around us.
@@ -25,7 +25,7 @@ The core gameplay mechanics of Saving Corgon include:
 
 ## Detailed Design Doc
 > Saving Corgon takes a three-pronged approach to teaching upper elementary students about circular economy and sustainability. The game is paired with an at-home activity and a field trip type activity to enhance the learning experience.
-
+> 
 > The first level of the game focuses on recycling plastic water bottles. Players must collect stray plastic water bottles as quickly as possible to recycle them properly. The in-home activity for this level involves repurposing a plastic water bottle into a bird feeder using the given instructions. For the field trip, the student will visit a bottle drop to see how they can earn money by recycling and how the whole system works.
-
+> 
 > In addition to level by level at-home activities, students will build a heat engine from a kit provided by the game. The heat engine will connect to the game through an Arduino, allowing students to earn in-game currency and learn about circular economy.
