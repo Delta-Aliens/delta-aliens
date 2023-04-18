@@ -42,11 +42,13 @@ public class Navigator : MonoBehaviour
     void OnDisable() {
         EventSystemsManager.Instance.onEndGame -= OnEndGame;
         EventSystemsManager.Instance.onRestartGame -= OnRestartGame;
+        EventSystemsManager.Instance.onQuitGame -= QuitGame;
     }
 
     void OnEnable() {
         EventSystemsManager.Instance.onEndGame += OnEndGame;
         EventSystemsManager.Instance.onRestartGame += OnRestartGame;
+        EventSystemsManager.Instance.onQuitGame += QuitGame;
     }
 
     public void SwitchScene(string sceneName) {
@@ -64,5 +66,10 @@ public class Navigator : MonoBehaviour
     {
         Debug.Log("Restart Game");
         SwitchScene("Main_Menu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
